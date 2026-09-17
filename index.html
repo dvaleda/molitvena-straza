@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Molitvena straža – 72 sata bez kompromisa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FDF8EF;--text:#1E2A3C;--muted:#6B7580;
+  --accent:#C1861F;--accent-ink:#241B0B;--green:#5C7A63;
+  --border:rgba(30,40,54,0.13);
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:"Work Sans",-apple-system,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;}
+.wrap{max-width:640px;margin:0 auto;padding:2.5rem 1.25rem 4rem;}
+h1,h2{font-family:"Fraunces",Georgia,serif;font-weight:600;line-height:1.15;margin:0;}
+h1{font-size:clamp(2rem,6vw,2.7rem);}
+h2{font-size:clamp(1.2rem,4vw,1.5rem);margin-bottom:0.8rem;}
+p{margin:0 0 0.9rem;}
+.muted{color:var(--muted);}
+section{padding:2rem 0;border-top:1px solid var(--border);}
+/* hero */
+.hero{padding-top:0;border-top:none;text-align:center;}
+.hero svg{width:100%;max-width:400px;height:auto;margin:0 auto 1.2rem;display:block;}
+.ridge-back{fill:none;stroke:var(--green);stroke-width:2;opacity:0.8;}
+.ridge-front{fill:none;stroke:var(--muted);stroke-width:2;}
+.sun{fill:var(--accent);}
+.hero h1{margin-bottom:0.3rem;}
+.subtitle{font-family:"Fraunces",Georgia,serif;font-style:italic;color:var(--muted);font-size:1rem;margin-bottom:1.2rem;}
+.intro{max-width:460px;margin:0 auto;}
+/* today box */
+.today-box{background:#FFF8EC;border:1.5px solid #E8C97A;border-radius:10px;padding:1.2rem 1.4rem;margin-bottom:1.5rem;}
+.today-box h2{color:var(--accent);margin-bottom:0.4rem;}
+.today-names{font-size:1.05rem;font-weight:600;margin:0 0 0.9rem;}
+.today-empty{font-style:italic;margin:0 0 0.9rem;color:var(--muted);}
+.quick-form{display:flex;gap:0.5rem;flex-wrap:wrap;}
+.quick-form input{flex:1;min-width:140px;font:inherit;font-size:1rem;padding:0.5rem 0.7rem;background:#fff;border:1.5px solid var(--border);border-radius:6px;color:var(--text);}
+.quick-form input:focus{outline:none;border-color:var(--accent);}
+.quick-form button{white-space:nowrap;}
+.other-day{font-size:0.82rem;color:var(--muted);margin-top:0.5rem;}
+.other-day a{color:var(--accent);cursor:pointer;text-decoration:underline;}
+.extra-date{margin-top:0.6rem;display:none;gap:0.5rem;flex-wrap:wrap;align-items:center;}
+.extra-date input{font:inherit;font-size:0.95rem;padding:0.4rem 0.6rem;border:1.5px solid var(--border);border-radius:6px;background:#fff;color:var(--text);}
+.extra-date input:focus{outline:none;border-color:var(--accent);}
+/* week */
+.week-row{display:flex;align-items:baseline;gap:0.7rem;padding:0.6rem 0;border-top:1px solid var(--border);}
+.week-row:first-child{border-top:none;}
+.week-day{min-width:110px;font-weight:600;color:var(--green);}
+.week-day.today{color:var(--accent);}
+.week-names{color:var(--muted);}
+.week-names.none{font-style:italic;}
+/* how to */
+.list-plain{list-style:none;margin:0;padding:0;}
+.list-plain li{position:relative;padding:0.45rem 0 0.45rem 1.1rem;border-top:1px solid var(--border);}
+.list-plain li:first-child{border-top:none;}
+.list-plain li::before{content:"";position:absolute;left:0;top:1rem;width:6px;height:6px;border-radius:50%;background:var(--accent);}
+/* form */
+.field{display:flex;flex-direction:column;gap:0.3rem;margin-bottom:1rem;}
+label{font-size:0.85rem;color:var(--muted);}
+input,select{font:inherit;font-size:1rem;padding:0.5rem 0.1rem;background:transparent;border:none;border-bottom:1.5px solid var(--border);color:var(--text);border-radius:0;}
+input::placeholder{color:var(--muted);opacity:0.7;}
+input:focus,select:focus{outline:none;border-bottom-color:var(--accent);}
+select{appearance:auto;}
+button{font:inherit;font-weight:600;font-size:1rem;padding:0.65rem 1.4rem;border:none;border-radius:5px;background:var(--accent);color:var(--accent-ink);cursor:pointer;}
+button:hover{opacity:0.9;}
+.msg{min-height:1.2em;font-size:0.9rem;color:var(--green);margin-top:0.5rem;}
+footer{text-align:center;border-top:1px solid var(--border);padding-top:2rem;margin-top:0.5rem;}
+footer .verso{font-family:"Fraunces",Georgia,serif;font-style:italic;font-size:1.1rem;margin-bottom:0.3rem;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+<svg viewBox="0 0 600 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<circle class="sun" cx="300" cy="42" r="9"></circle>
+<path class="ridge-back" d="M0 150 L90 90 L150 130 L250 55 L330 125 L420 70 L520 140 L600 110 L600 150 Z"></path>
+<path class="ridge-front" d="M0 150 L110 60 L170 110 L260 30 L340 110 L430 50 L520 120 L600 80 L600 150 Z"></path>
+</svg>
+<h1>Molitvena straža</h1>
+<p class="subtitle">72 sata bez kompromisa, Zagreb</p>
+<p class="intro">Uz svu buku i posao ovih 72 sata, netko treba i moliti. Upiši svoje ime i pridruži se molitvenoj straži.</p>
+</header>
+
+<section>
+<div class="today-box">
+<h2 id="todayHeading">Danas mole</h2>
+<p id="todayNames" class="today-names"></p>
+<form id="prayerForm">
+<div class="quick-form">
+<input id="nameInput" type="text" placeholder="Tvoje ime" required autocomplete="off">
+<button type="submit">Molim danas</button>
+</div>
+<p class="other-day"><a id="toggleDate">Molim drugi dan →</a></p>
+<div class="extra-date" id="extraDate">
+<input id="dateInput" type="date">
+</div>
+<p class="msg" id="formMsg" aria-live="polite"></p>
+</form>
+</div>
+<h2>Ovaj tjedan</h2>
+<div id="weekList"></div>
+</section>
+
+<section>
+<h2>Litanije svetom Pier Giorgiu</h2>
+<button type="button" id="litToggle" style="margin-bottom:1rem;">Otvori litanije</button>
+<div id="litText" style="display:none;line-height:1.8;">
+<p><em>Nebeski Oče, daj mi hrabrosti da težim najvišim ciljevima, da pobjegnem od svake napasti prosječnosti.<br>
+Pomozi mi da čeznem za veličinom, kao što je to činio Pier Giorgio, i da s radošću otvorim svoje srce Tvome pozivu na svetost.</em></p>
+<p><em>Oslobodi me straha od neuspjeha. Želim, Gospodine, biti čvrsto i zauvijek sjedinjen s Tobom. Udijeli mi milosti koje te molim po zagovoru Pier Giorgia, po zaslugama našega Gospodina Isusa Krista. Amen</em></p>
+<p>Gospodine, smiluj se!<br>Kriste, smiluj se!<br>Gospodine, smiluj se!<br>Kriste, čuj nas!<br>Kriste, usliši nas!</p>
+<p>Oče Nebeski, Bože, smiluj nam se!<br>Sine, Otkupitelju svijeta, Bože<br>Duše Sveti, Bože,<br>Sveto Trojstvo, jedan Bože,</p>
+<p>Sveta Marijo, moli za nas!<br>Svi anđeli i sveci, molite za nas!</p>
+<p>
+Bl. Pier Giorgio, moli za nas!<br>
+Voljeni sine i brate,<br>
+Potpora obiteljskom životu,<br>
+Prijatelju onima bez prijatelja,<br>
+Najkršćanskiji od svojih suputnika,<br>
+Voditelju mladih,<br>
+Pomoćniče potrebitih,<br>
+Učitelju milosrđa,<br>
+Zaštitniče siromaha,<br>
+Utjeho bolesnika,<br>
+Sportašu Božjega kraljevstva,<br>
+Osvajaču životnih planina,<br>
+Branitelju istine i vrline,<br>
+Protivniče svake nepravde,<br>
+Domoljubni građanine nacije,<br>
+Odani sine Crkve,<br>
+Odano dijete Gospe,<br>
+Gorljivi štovatelju Euharistije,<br>
+Gorljivi proučavatelju Svetoga pisma,<br>
+Predani sljedbeniče svetog Dominika,<br>
+Apostole molitve i posta,<br>
+Vodiču do duboke ljubavi prema Isusu,<br>
+Marljivi u radu i učenju,<br>
+Radostan u svim životnim okolnostima,<br>
+Jaki u čuvanju čistoće,<br>
+Tihi u boli i patnji,<br>
+Vjeran obećanjima krštenja,<br>
+Uzoru poniznosti,<br>
+Primjeru odvojenosti,<br>
+Ogledalo poslušnosti,<br>
+Čovječe Blaženstva,
+</p>
+<p>Jaganjče Božji, koji oduzimaš grijehe svijeta, oprosti nam, Gospodine!<br>
+Jaganjče Božji, koji oduzimaš grijehe svijeta, usliši nas, Gospodine!<br>
+Jaganjče Božji, koji oduzimaš grijehe svijeta, smiluj nam se!</p>
+<p>Moli za nas, Bl. Pier Giorgio Frassati,<br>
+Da postanemo dostojni Kristovih obećanja.</p>
+<p><strong>Pomolimo se</strong><br>
+Oče, dao si mladom Pieru Giorgiu Frassatiju radost susreta s Kristom i življenja njegove vjere u služenju siromašnima i bolesnima. Po njegovom zagovoru neka i mi idemo putem blaženstava i slijedimo primjer njegove velikodušnosti, šireći duh Evanđelja u društvu. To te molimo po Kristu Gospodinu našem. Amen.</p>
+</div>
+</section>
+
+<section>
+<h2>Ideje za molitvu</h2>
+<p class="muted">Odaberi ono što ti paše, kratko ili dugo, sve vrijedi:</p>
+<ul class="list-plain">
+<li>Sveta misa, po nakani projekta ili po svojoj</li>
+<li>Krunica, cijela ili samo jedna desetica</li>
+<li>Litanije svetom Pier Giorgiu Frassatiju</li>
+<li>Jedno Zdravo Marijo, ako je to sve što stigneš</li>
+<li>Bilo koja druga molitva koju obično moliš</li>
+</ul>
+</section>
+
+<section>
+<p class="kicker muted" style="font-size:0.85rem;color:var(--green);margin-bottom:0.3rem;">Zaštitnik ove godine</p>
+<h2>Sveti Pier Giorgio Frassati</h2>
+<img src="Blessed-Pier-Giorgio-Frassati-canonization-pilgrimage.webp" alt="Sveti Pier Giorgio Frassati" style="width:100%;max-width:340px;border-radius:8px;display:block;margin:0.8rem auto 1rem;">
+<p>Mladi laik iz Torina, strastveni planinar koji je vjeru pretvarao u konkretnu službu siromašnima. Papa Leon XIV proglasio ga svetim 7. rujna 2025. Njegov moto: <em>verso l'alto</em> — prema visinama.</p>
+</section>
+
+<footer>
+<p class="verso">Verso l'alto.</p>
+<p class="muted">Hvala što moliš s nama.</p>
+</footer>
+
+</div>
+<script>
+(function(){
+  var STORAGE_KEY = 'molitvena_straza_entries';
+  var days = ['nedjelja','ponedjeljak','utorak','srijeda','četvrtak','petak','subota'];
+  var months = ['siječnja','veljače','ožujka','travnja','svibnja','lipnja','srpnja','kolovoza','rujna','listopada','studenoga','prosinca'];
+
+  function loadEntries(){
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch(e){ return []; }
+  }
+  function saveEntries(entries){
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(entries)); } catch(e){}
+  }
+
+  function toISO(d){ return d.toISOString().slice(0,10); }
+
+  function formatDay(iso){
+    var p = iso.split('-'), d = new Date(+p[0], +p[1]-1, +p[2]);
+    return days[d.getDay()] + ', ' + (+p[2]) + '. ' + months[+p[1]-1];
+  }
+
+  function getWeekDates(){
+    var today = new Date(); today.setHours(0,0,0,0);
+    var dates = [];
+    for(var i=0;i<7;i++){
+      var d = new Date(today); d.setDate(today.getDate()+i);
+      dates.push(toISO(d));
+    }
+    return dates;
+  }
+
+  function render(){
+    var entries = loadEntries();
+    var todayISO = toISO(new Date());
+    var weekDates = getWeekDates();
+
+    // today box
+    var todayNames = entries.filter(function(e){ return e.date === todayISO; }).map(function(e){ return e.name; });
+    var todayEl = document.getElementById('todayNames');
+    var todayHead = document.getElementById('todayHeading');
+    var p = new Date(); p.setHours(0,0,0,0);
+    todayHead.textContent = 'Danas mole (' + (+todayISO.split('-')[2]) + '. ' + months[+todayISO.split('-')[1]-1] + ')';
+    if(todayNames.length){
+      todayEl.className = 'today-names';
+      todayEl.textContent = todayNames.join(', ');
+    } else {
+      todayEl.className = 'today-empty';
+      todayEl.textContent = 'Još nitko — budi prvi!';
+    }
+
+    // week list
+    var weekEl = document.getElementById('weekList');
+    var html = '';
+    weekDates.forEach(function(iso){
+      var names = entries.filter(function(e){ return e.date === iso; }).map(function(e){ return e.name; });
+      var isToday = iso === todayISO;
+      html += '<div class="week-row">'
+        + '<span class="week-day' + (isToday ? ' today' : '') + '">' + formatDay(iso) + '</span>'
+        + '<span class="week-names' + (names.length ? '' : ' none') + '">'
+        + (names.length ? names.join(', ') : 'nitko još')
+        + '</span></div>';
+    });
+    weekEl.innerHTML = html;
+  }
+
+  var dateInput = document.getElementById('dateInput');
+  dateInput.value = toISO(new Date());
+
+  document.getElementById('litToggle').addEventListener('click', function(){
+    var lit = document.getElementById('litText');
+    var open = lit.style.display !== 'none';
+    lit.style.display = open ? 'none' : 'block';
+    this.textContent = open ? 'Otvori litanije' : 'Zatvori litanije';
+  });
+
+  document.getElementById('toggleDate').addEventListener('click', function(){
+    var ed = document.getElementById('extraDate');
+    ed.style.display = ed.style.display === 'flex' ? 'none' : 'flex';
+  });
+
+  render();
+
+  document.getElementById('prayerForm').addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var name = document.getElementById('nameInput').value.trim();
+    var ed = document.getElementById('extraDate');
+    var date = (ed.style.display === 'flex' && dateInput.value) ? dateInput.value : toISO(new Date());
+    if(!name){ document.getElementById('formMsg').textContent = 'Upiši svoje ime.'; return; }
+    var entries = loadEntries();
+    entries.push({ name: name, date: date });
+    saveEntries(entries);
+    render();
+    ev.target.reset();
+    dateInput.value = toISO(new Date());
+    ed.style.display = 'none';
+    document.getElementById('formMsg').textContent = 'Hvala, ' + name + '!';
+    setTimeout(function(){ document.getElementById('formMsg').textContent = ''; }, 3000);
+  });
+})();
+</script>
+</body>
+</html>
