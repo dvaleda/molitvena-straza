@@ -300,6 +300,21 @@ Oče, dao si mladom Pieru Giorgiu Frassatiju radost susreta s Kristom i življen
   document.getElementById('toggleDate').addEventListener('click', function(){
     var ed = document.getElementById('extraDate');
     ed.style.display = ed.style.display === 'flex' ? 'none' : 'flex';
+    if(ed.style.display === 'none'){
+      dateInput.value = toISO(new Date());
+      document.querySelector('.btn-primary').textContent = 'Molim danas';
+    }
+  });
+
+  dateInput.addEventListener('change', function(){
+    var btn = document.querySelector('.btn-primary');
+    var todayISO = toISO(new Date());
+    if(this.value === todayISO){
+      btn.textContent = 'Molim danas';
+    } else {
+      var p = this.value.split('-');
+      btn.textContent = 'Molim ' + (+p[2]) + '. ' + months[+p[1]-1];
+    }
   });
 
   loadAndRender();
