@@ -185,16 +185,8 @@ Oče, dao si mladom Pieru Giorgiu Frassatiju radost susreta s Kristom i življen
 </div>
 <script>
 (function(){
-  var STORAGE_KEY = 'molitvena_straza_entries';
   var days = ['nedjelja','ponedjeljak','utorak','srijeda','četvrtak','petak','subota'];
   var months = ['siječnja','veljače','ožujka','travnja','svibnja','lipnja','srpnja','kolovoza','rujna','listopada','studenoga','prosinca'];
-
-  function loadEntries(){
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch(e){ return []; }
-  }
-  function saveEntries(entries){
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(entries)); } catch(e){}
-  }
 
   function toISO(d){ return d.toISOString().slice(0,10); }
 
@@ -213,17 +205,13 @@ Oče, dao si mladom Pieru Giorgiu Frassatiju radost susreta s Kristom i življen
     return dates;
   }
 
-  function render(){
-    var entries = loadEntries();
+  function render(entries){
     var todayISO = toISO(new Date());
     var weekDates = getWeekDates();
 
-    // today box
     var todayNames = entries.filter(function(e){ return e.date === todayISO; }).map(function(e){ return e.name; });
     var todayEl = document.getElementById('todayNames');
-    var todayHead = document.getElementById('todayHeading');
-    var p = new Date(); p.setHours(0,0,0,0);
-    todayHead.textContent = 'Danas mole (' + (+todayISO.split('-')[2]) + '. ' + months[+todayISO.split('-')[1]-1] + ')';
+    document.getElementById('todayHeading').textContent = 'Danas mole (' + (+todayISO.split('-')[2]) + '. ' + months[+todayISO.split('-')[1]-1] + ')';
     if(todayNames.length){
       todayEl.className = 'today-names';
       todayEl.textContent = todayNames.join(', ');
@@ -232,8 +220,6 @@ Oče, dao si mladom Pieru Giorgiu Frassatiju radost susreta s Kristom i življen
       todayEl.textContent = 'Još nitko — budi prvi!';
     }
 
-    // week list
-    var weekEl = document.getElementById('weekList');
     var html = '';
     weekDates.forEach(function(iso){
       var names = entries.filter(function(e){ return e.date === iso; }).map(function(e){ return e.name; });
@@ -244,7 +230,11 @@ Oče, dao si mladom Pieru Giorgiu Frassatiju radost susreta s Kristom i življen
         + (names.length ? names.join(', ') : 'nitko još')
         + '</span></div>';
     });
-    weekEl.innerHTML = html;
+    document.getElementById('weekList').innerHTML = html;
+  }
+
+  function loadAndRender(){
+    fetch('/entries').then(function(r){ return r.json(); }).then(render).catch(function(){ render([]); });
   }
 
   var dateInput = document.getElementById('dateInput');
@@ -262,7 +252,7 @@ Oče, dao si mladom Pieru Giorgiu Frassatiju radost susreta s Kristom i življen
     ed.style.display = ed.style.display === 'flex' ? 'none' : 'flex';
   });
 
-  render();
+  loadAndRender();
 
   document.getElementById('prayerForm').addEventListener('submit', function(ev){
     ev.preventDefault();
@@ -270,15 +260,20 @@ Oče, dao si mladom Pieru Giorgiu Frassatiju radost susreta s Kristom i življen
     var ed = document.getElementById('extraDate');
     var date = (ed.style.display === 'flex' && dateInput.value) ? dateInput.value : toISO(new Date());
     if(!name){ document.getElementById('formMsg').textContent = 'Upiši svoje ime.'; return; }
-    var entries = loadEntries();
-    entries.push({ name: name, date: date });
-    saveEntries(entries);
-    render();
-    ev.target.reset();
-    dateInput.value = toISO(new Date());
-    ed.style.display = 'none';
-    document.getElementById('formMsg').textContent = 'Hvala, ' + name + '!';
-    setTimeout(function(){ document.getElementById('formMsg').textContent = ''; }, 3000);
+    fetch('/entries', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name, date: date })
+    }).then(function(){
+      loadAndRender();
+      ev.target.reset();
+      dateInput.value = toISO(new Date());
+      ed.style.display = 'none';
+      document.getElementById('formMsg').textContent = 'Hvala, ' + name + '!';
+      setTimeout(function(){ document.getElementById('formMsg').textContent = ''; }, 3000);
+    }).catch(function(){
+      document.getElementById('formMsg').textContent = 'Greška, pokušaj ponovno.';
+    });
   });
 })();
 </script>
