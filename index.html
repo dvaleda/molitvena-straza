@@ -56,6 +56,7 @@ p{margin-bottom:1rem;}
 .btn{padding:0.75rem 1.3rem;font:inherit;font-weight:600;font-size:1rem;border:none;border-radius:10px;cursor:pointer;transition:all 0.2s;}
 .btn-primary{background:var(--accent);color:#fff;}
 .btn-primary:hover{background:var(--accent-dark);}
+.btn-primary:disabled{background:var(--muted);cursor:not-allowed;}
 .btn-outline{background:transparent;border:2px solid var(--accent);color:var(--accent-dark);}
 .btn-outline:hover{background:var(--accent);color:#fff;}
 .other-day{font-size:0.85rem;color:var(--muted);margin-top:0.7rem;}
@@ -309,8 +310,9 @@ Oče, dao si mladom Pieru Giorgiu Frassatiju radost susreta s Kristom i življen
   dateInput.addEventListener('change', function(){
     var btn = document.querySelector('.btn-primary');
     var todayISO = toISO(new Date());
-    if(this.value === todayISO){
+    if(!this.value || this.value === todayISO){
       btn.textContent = 'Molim danas';
+      if(!this.value) this.value = todayISO;
     } else {
       var p = this.value.split('-');
       btn.textContent = 'Molim ' + (+p[2]) + '. ' + months[+p[1]-1];
@@ -325,6 +327,10 @@ Oče, dao si mladom Pieru Giorgiu Frassatiju radost susreta s Kristom i življen
     var ed = document.getElementById('extraDate');
     var date = (ed.style.display === 'flex' && dateInput.value) ? dateInput.value : toISO(new Date());
     if(!name){ document.getElementById('formMsg').textContent = 'Upiši svoje ime.'; return; }
+    var btn = document.querySelector('.btn-primary');
+    var originalText = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Šaljem...';
     fetch('/entries', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -334,9 +340,13 @@ Oče, dao si mladom Pieru Giorgiu Frassatiju radost susreta s Kristom i življen
       ev.target.reset();
       dateInput.value = toISO(new Date());
       ed.style.display = 'none';
+      btn.disabled = false;
+      btn.textContent = 'Molim danas';
       document.getElementById('formMsg').textContent = 'Hvala, ' + name + '!';
       setTimeout(function(){ document.getElementById('formMsg').textContent = ''; }, 3000);
     }).catch(function(){
+      btn.disabled = false;
+      btn.textContent = originalText;
       document.getElementById('formMsg').textContent = 'Greška, pokušaj ponovno.';
     });
   });
