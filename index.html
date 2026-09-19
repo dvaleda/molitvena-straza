@@ -18,13 +18,14 @@
   --card:#FFFFFF;
   --text:#2C3E50;
   --muted:#7F8C8D;
-  --accent:#D4A056;
-  --accent-dark:#C1861F;
+  --accent:#7aab1a;
+  --accent-dark:#5c8a10;
   --green:#6B8E6B;
   --border:#E8E8E8;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--text);font-family:"Work Sans",-apple-system,sans-serif;line-height:1.6;}
+body{background:var(--bg);color:var(--text);font-family:"Work Sans",-apple-system,sans-serif;line-height:1.6;position:relative;}
+body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:url('stm1.jpg') center center no-repeat;background-size:contain;opacity:0.27;pointer-events:none;z-index:-1;}
 .wrap{max-width:600px;margin:0 auto;padding:2.5rem 1.25rem 3rem;}
 h1,h2{font-family:"Fraunces",Georgia,serif;font-weight:600;}
 h1{font-size:2.2rem;margin-bottom:0.3rem;}
@@ -86,6 +87,11 @@ p{margin-bottom:1rem;}
 .list-plain li{padding:0.6rem 0;border-bottom:1px solid var(--border);font-size:0.95rem;}
 .list-plain li:last-child{border-bottom:none;}
 
+/* tier */
+.tier-title{font-size:1rem;font-weight:600;color:var(--accent-dark);margin-bottom:0.5rem;}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.tier-card{margin-bottom:0;}
+
 /* patron */
 .patron-header{display:flex;gap:1.2rem;align-items:flex-start;margin-bottom:1rem;}
 .patron-header img{width:100px;height:130px;object-fit:cover;border-radius:10px;flex-shrink:0;}
@@ -112,6 +118,7 @@ footer{text-align:center;margin-top:2.5rem;padding-top:2rem;border-top:1px solid
   .patron-header{flex-direction:column;align-items:center;text-align:center;}
   .gallery{grid-template-columns:1fr;}
   .week-row{flex-direction:column;align-items:flex-start;gap:0.3rem;}
+  .tiers{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -198,14 +205,29 @@ Oče, dao si mladom Pieru Giorgiu Frassatiju radost susreta s Kristom i življen
 </div>
 
 <h2 class="section-title">Ideje za molitvu</h2>
-<div class="card">
+<div class="tiers">
+<div class="card tier-card">
+<h3 class="tier-title">Prvi koraci</h3>
 <ul class="list-plain">
-<li>Sveta misa, po nakani projekta ili po svojoj</li>
+<li>Jedno Zdravo Marijo</li>
+<li>Kratka osobna molitva</li>
+</ul>
+</div>
+<div class="card tier-card">
+<h3 class="tier-title">Ustrajnost</h3>
+<ul class="list-plain">
 <li>Krunica, cijela ili samo jedna desetica</li>
 <li>Litanije svetom Pier Giorgiu Frassatiju</li>
-<li>Jedno Zdravo Marijo, ako je to sve što stigneš</li>
-<li>Bilo koja druga molitva koju obično moliš</li>
+<li>Sveta misa</li>
 </ul>
+</div>
+<div class="card tier-card">
+<h3 class="tier-title">Bez kompromisa</h3>
+<ul class="list-plain">
+<li>Noćno bdijenje pred Presvetim</li>
+<li>Post i žrtva</li>
+</ul>
+</div>
 </div>
 
 <h2 class="section-title">Zaštitnik ove godine</h2>
